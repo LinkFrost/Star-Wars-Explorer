@@ -16,7 +16,7 @@ export default function Explorer({ attribute, searchQuery }: ExplorerProps) {
     if (fetchStatus === "loaded") {
       switch (attribute) {
         case "people":
-          return <People data={data}></People>;
+          return <People peopleData={data}></People>;
       }
     }
   };

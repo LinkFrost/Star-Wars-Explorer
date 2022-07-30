@@ -10,20 +10,24 @@ export function useAPI(attribute: String, searchQuery: String) {
   useEffect(() => {
     if (!searchQuery) {
       setData(null);
-      setFetchStatus("loading");
+      setFetchStatus("error");
       return;
     }
     const apiData = async () => {
       setFetchStatus("loading");
 
-      let url: any = `${baseUrl}${attribute}/?search=${searchQuery}`;
-      if (!attribute) url = searchQuery;
+      if (attribute.length === 0) {
+        let url: any = searchQuery;
+        let data = await axios.get(url).then((res) => res.data);
+        setData(data);
+      } else {
+        let url: any = `${baseUrl}${attribute}/?search=${searchQuery}`;
+        let data = await axios.get(url).then((res) => res.data.results);
+        if (data.length === 0) return false;
+        setData(data[0]);
+      }
 
-      const data = await axios.get(url).then((res) => res.data.results);
-
-      if (data.length === 0) return false;
-
-      setData(data[0]);
+      console.log(data);
       setFetchStatus("loaded");
     };
 
