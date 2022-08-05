@@ -1,5 +1,5 @@
 import People from "./People";
-import { useAPI } from "../utils";
+import { useSWAPI } from "../utils";
 
 interface ExplorerProps {
   attribute: String;
@@ -7,7 +7,7 @@ interface ExplorerProps {
 }
 
 export default function Explorer({ attribute, searchQuery }: ExplorerProps) {
-  const { fetchStatus, data } = useAPI(attribute, searchQuery);
+  const { fetchStatus, data } = useSWAPI(attribute, searchQuery);
 
   const attributeComponent = () => {
     if (!searchQuery) return;

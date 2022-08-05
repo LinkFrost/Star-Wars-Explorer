@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export function useAPI(attribute: String, searchQuery: String) {
+export function useSWAPI(attribute: String, searchQuery: String) {
   const [data, setData] = useState<any>();
   const [fetchStatus, setFetchStatus] = useState("");
 
@@ -10,9 +10,10 @@ export function useAPI(attribute: String, searchQuery: String) {
   useEffect(() => {
     if (!searchQuery) {
       setData(null);
-      setFetchStatus("error");
+      setFetchStatus("field empty");
       return;
     }
+
     const apiData = async () => {
       setFetchStatus("loading");
 
@@ -27,8 +28,48 @@ export function useAPI(attribute: String, searchQuery: String) {
         setData(data[0]);
       }
 
-      console.log(data);
       setFetchStatus("loaded");
+    };
+
+    apiData();
+  }, [searchQuery]);
+
+  return { fetchStatus, data };
+}
+
+export function useImageAPI(searchQuery: String) {
+  const [data, setData] = useState<any>();
+  const [fetchStatus, setFetchStatus] = useState("");
+
+  useEffect(() => {
+    if (!searchQuery) {
+      setData(null);
+      setFetchStatus("field empty");
+      return;
+    }
+
+    const apiData = async () => {
+      setFetchStatus("loading");
+
+      const options = {
+        method: "get",
+        url: `https://api.bing.microsoft.com/v7.0/images/search/`,
+        params: { q: searchQuery },
+        headers: {
+          "Ocp-Apim-Subscription-Key": "c9736afc44ed477d99654850ce7140ab",
+        },
+      };
+
+      axios
+        .request(options)
+        .then((res) => {
+          console.log(res.data);
+          setData(res.data);
+          setFetchStatus("loaded");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     };
 
     apiData();
