@@ -18,9 +18,9 @@ export default function People({ peopleData }: any) {
   const renderData = () => {
     if (speciesFetchStatus !== "loading" && homeworldFetchStatus !== "loading" && imageFetchStatus !== "loading") {
       return (
-        <div className="flex flex-col justify-center items-center mb-1">
-          <img className="mb-3 h-60 w-auto" alt={peopleData.name} src={img}></img>
-          <div className="grid grid-cols-2 w-full text-xs sm:text-sm sm:grid-cols-3">
+        <div className="flex flex-row sm:flex-col space-x-2 justify-center items-center mb-1">
+          <img className="mb-3 h-auto w-36 sm:h-60 sm:w-auto" alt={peopleData.name} src={img}></img>
+          <div className="grid grid-cols-1 w-full text-sm sm:text-base sm:grid-cols-3">
             <div className="flex flex-row space-x-1">
               <h2 className="font-bold">Name:</h2>
               <h2>{peopleData.name}</h2>

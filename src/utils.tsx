@@ -11,6 +11,7 @@ export function useSWAPI(attribute: String, searchQuery: String) {
     if (!searchQuery) {
       setData(null);
       setFetchStatus("field empty");
+
       return;
     }
 
@@ -20,11 +21,14 @@ export function useSWAPI(attribute: String, searchQuery: String) {
       if (attribute.length === 0) {
         let url: any = searchQuery;
         let data = await axios.get(url).then((res) => res.data);
+
         setData(data);
       } else {
         let url: any = `${baseUrl}${attribute}/?search=${searchQuery}`;
         let data = await axios.get(url).then((res) => res.data.results);
+
         if (data.length === 0) return false;
+
         setData(data[0]);
       }
 
@@ -45,6 +49,7 @@ export function useImageAPI(searchQuery: String) {
     if (!searchQuery) {
       setData(null);
       setFetchStatus("field empty");
+
       return;
     }
 
