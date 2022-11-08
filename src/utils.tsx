@@ -61,7 +61,7 @@ export function useImageAPI(searchQuery: String) {
         url: `https://api.bing.microsoft.com/v7.0/images/search/`,
         params: { q: searchQuery },
         headers: {
-          "Ocp-Apim-Subscription-Key": "c9736afc44ed477d99654850ce7140ab",
+          "Ocp-Apim-Subscription-Key": process.env.REACT_APP_BING_API || "",
         },
       };
 

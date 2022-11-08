@@ -3,6 +3,7 @@ import { useState } from "react";
 import Header from "./Components/Header";
 import Explorer from "./Components/Explorer";
 import "./index.css";
+import { Dropdown } from "./Components/Dropdown";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState<String>("");
@@ -13,15 +14,18 @@ function App() {
       <main className="flex flex-col justify-center items-center max-w-xs sm:max-w-lg mt-8">
         <Header></Header>
         <div className="bg-sw-yellow shadow-yellow-200 w-full p-2 rounded-xl mb-6">
-          <input
-            className="px-2 rounded-xl h-8 w-full mb-5"
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                setSearchQuery(e.target.value);
-                setAttribute("people");
-              }
-            }}
-          ></input>
+          <div className="flex flex-row">
+            <input
+              className="px-2 rounded-l-xl h-8 w-full mb-5"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  setSearchQuery(e.target.value);
+                  setAttribute("people");
+                }
+              }}
+            ></input>
+            <Dropdown></Dropdown>
+          </div>
           <Explorer attribute={attribute} searchQuery={searchQuery}></Explorer>
         </div>
         <p className="text-md">
