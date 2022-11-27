@@ -36,7 +36,7 @@ export function useSWAPI(attribute: String, searchQuery: String) {
     };
 
     apiData();
-  }, [searchQuery]);
+  }, [attribute, searchQuery]);
 
   return { fetchStatus, data };
 }

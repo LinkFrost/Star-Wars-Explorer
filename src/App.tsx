@@ -29,8 +29,8 @@ function App() {
           <Explorer attribute={attribute} searchQuery={searchQuery}></Explorer>
         </div>
         <p className="text-md">
-          <b>How to use:</b> Use the dropdown menu to search from the following categories: movies, characters, planets, species, starships, and vehicles. Please note that SWAPI only includes characters from the OT era scrapped from Wookiepedia, so a lot of newer characters might be missing. So if it does not show up, please contact @xlinkfrostx on
-          Twitter <i>(the API might be replaced at some point)</i>.
+          <b>How to use:</b> Use the dropdown menu to search from the following categories: movies, characters, planets, species, starships, and vehicles. Please note that SWAPI only includes characters from the OT era scrapped from Wookiepedia, so a lot of newer characters might be missing. So if
+          it does not show up, please contact @xlinkfrostx on Twitter <i>(the API might be replaced at some point)</i>.
         </p>
       </main>
     </div>
